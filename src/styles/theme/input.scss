@@ -1,0 +1,28 @@
+.form{
+    &_group{
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        margin: auto;
+    }
+   
+}
+$mainColor: #FFFFFF;
+
+.input_wrapper {
+    margin-bottom: 20px;
+    label {
+        font-size: 20px;
+        color: black;
+    }
+    input {
+        width: 100%;
+        height: 30px;
+        border-radius: 4px;
+        //color: $mainColor;
+    }
+    @media(max-width: 500px) {
+        margin-bottom: 10px;
+    }
+
+}

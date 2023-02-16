@@ -1,0 +1,32 @@
+.page_wrapper{
+    width: 100%;
+    height: 78vh;
+    // background-image: url("../../../public/bg.png");
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    .box_profil{
+        position: relative;
+        text-align: center;
+        width: 100%;
+        &_picture{
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: row;
+            img{
+                width: 150px;
+                height: 150px;
+            }
+        }
+        &_content{
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            div{
+                padding: 5px;
+            }
+        }
+    }
+}

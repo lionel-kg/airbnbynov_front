@@ -1,0 +1,57 @@
+.card_container {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    .container_img_place {
+        position: relative;
+        width: 329px;
+        height: 309px;
+        img {
+            border-radius: 4%;
+            width: 329px;
+            height: 309px;
+            object-fit: cover;
+        }
+        .favorite {
+            z-index: 3;
+            position: absolute;
+            right: 8px;
+            top: 8px;
+        }
+    }
+    .title {
+        margin-bottom: 3px;
+    }
+    .pricing {
+        .price{
+            font-size: 1.1rem;
+        }
+    p {
+        margin-right: 5px;
+    }
+    }
+    .location_capacity {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .capacity {
+        span{
+
+            vertical-align: super;
+        }
+    }
+    .places_content {
+    padding-top: 8px;
+   }
+   .overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+   }
+
+}

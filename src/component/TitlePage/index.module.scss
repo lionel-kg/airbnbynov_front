@@ -1,0 +1,21 @@
+@import "../../styles/helpers/variables";
+.title_page {
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+    margin: 20px 0px;
+    h1 {
+        font-size: 30px;
+        font-weight: 600;
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: -5%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: $mainColor;
+        height: 3px;
+        width: 100px;
+    }
+}
