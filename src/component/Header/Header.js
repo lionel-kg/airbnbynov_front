@@ -6,7 +6,7 @@ import Logo from "../../../public/logo.png";
 import WishlistContext from '../../context/WishlistContext';
 import SearchContext from '../../context/SearchContext';
 import CustomButton from "../CustomButton/index";
-import { AccountCircleRounded, Filter, FilterAlt, FilterAltRounded, Menu, TuneSharp } from '@mui/icons-material';
+import { AccountCircleRounded, Filter, FilterAlt, FilterAltRounded, LanguageRounded, Menu, Search, TuneSharp  } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import Input from '../Input';
 import Modal from '../Modal/Modal';
@@ -77,18 +77,19 @@ const Header = () => {
             updateSearch(e.target.value);
           }, 1000);
           }}/>
+          <div className={styles.searchIcon}><Search/></div>
           <TuneSharp className={styles.icons} onClick={()=>{setOpenModal(!openModal)}} />
         </div>
         <div className={styles.header_menu}>
           <ul className={styles.nav_list}>
             <li className={styles.nav_item}>
               <Link href="/about">
-                About
+                Mettre mon logement sur Airbnb
               </Link>
             </li>
             <li className={styles.nav_item}>
               <Link href="/register">
-                Register
+                <LanguageRounded/>
               </Link>
             </li>
             <li className={styles.nav_item}>
