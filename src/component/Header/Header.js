@@ -100,25 +100,7 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        { openModal ?
-
-        <Modal show={openModal} setShow={setOpenModal} title="Filter">
-          <form method='get' onSubmit={handleSubmit}>
-            <div className={styles.filterContainer}>
-              <Input name="price_min" classes="form_input" type="text" label="prix minimum" defaultValue={router.query.price_min?router.query.price_min : priceDefault.min} /*value={value.price_Min}*/ handleChange={(e) => handleChangeInput(e)}/>
-              <Input name="price_max" classes="form_input" type="text"  label="prix maximum"  defaultValue={router.query.price_max?router.query.price_max : priceDefault.max} /*value={value.price_Max}*/ handleChange={(e) => handleChangeInput(e)}/>                     
-            </div>
-            <div className={styles.filterContainer}>
-              <Input name="capacity_min" classes="form_input" type="text" label="capacité minimum" defaultValue={router.query.capacity_min ? router.query.capacity_min : capacityDefault.min} /*value={value.capacity_Min}*/ handleChange={(e) => handleChangeInput(e)}/>
-              <Input name="capacity_max" classes="form_input" type="text"  label="capacité maximum"  defaultValue={router.query.capacity_max ? router.query.capacity_max : capacityDefault.max} /*value={value.capacity_Max}*/ handleChange={(e) => handleChangeInput(e)}/>                     
-            </div>
-            <div>
-              <CustomSelect name="type" options={typePlaces} handleChange={(e)=>{handleChangeInput(e)}} />
-            </div>
-            <CustomButton type="submit" classes="btn btn_color-black" text="Afficher" onClick={(e)=>{applyFilter();}}/>
-          </form>
-        </Modal> : null
-        }
+        
       </header>
     );
 }

@@ -1,5 +1,9 @@
 .header {
     &_main {
+        position: sticky;
+        top: 0;
+        z-index: 101;
+        background-color: #fff;
         padding: 20px;
         display: flex;
         justify-content: space-between;

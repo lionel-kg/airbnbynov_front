@@ -19,10 +19,10 @@ const Index = (props) => {
                 className={classes} 
                 id={id} 
                 name={name} 
-                defaultValue={defaultValue}
                 onChange={handleChange}
+                defaultValue={defaultValue}
                 >
-                    <option value={""} selected={true}>vide</option>
+                    <option value={""} selected={true} >vide</option>
                 {options.map((option)=> {
                     return <option value={option._id}>{option.title}</option>
                 })}

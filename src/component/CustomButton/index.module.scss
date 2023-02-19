@@ -1,9 +1,36 @@
-.btn {
-    border-radius:10px;
-    font-size: 15px;
-    display: inline-block;
+.btn{
+    border: none;
+    border-radius: 5px;
+    padding: 15px 20px;
+    background-color: none;
+    text-transform: uppercase;
     transition: 0.3s all;
-    &__black {
-        background: black;
+    cursor: pointer;
+    &_color {
+        &-black {
+            background: black;
+            color: white;
+            &:hover {
+                background: white;
+                border: 1px solid black;
+                color: black;
+                transition: 0.3s all;
+            }
+            &-long {
+                background: black;
+                color: white;
+                width: 90%;
+                margin-left: 5%;
+                &:hover {
+                    background: white;
+                    border: 1px solid black;
+                    color: black;
+                    transition: 0.3s all;
+                }
+            }
+        }
+    }
+    &_full{
+        width: 100%;
     }
 }

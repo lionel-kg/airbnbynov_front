@@ -3,6 +3,7 @@ import placeService from '../../service/place.service';
 import GridCard from "../../component/GridCard/index";
 import { useRouter } from 'next/router';
 import SearchContext from '../../context/SearchContext';
+import ListIconsFilter from "../../component/ListIconsFilter/index"
 
 const Index = () => {
     const {search} = useContext(SearchContext);
@@ -42,7 +43,10 @@ const Index = () => {
 
     return (
         <div className='homepage_container'>
-           <GridCard places={places} loading={loading}/>
+           <ListIconsFilter />
+           <div className='container_grid'>
+            <GridCard places={places} loading={loading}/>
+           </div>
         </div>
     );
 }
