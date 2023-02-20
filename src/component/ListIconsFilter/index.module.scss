@@ -49,6 +49,11 @@
     border-radius: 12px;
     margin: 0;
     padding: 8px;
+    transition: box-shadow 1s;
+    &:hover{
+        cursor: pointer;
+        box-shadow: 0 0 5px #515151;
+    }
   }
     .container {
     display: flex;
@@ -84,5 +89,6 @@
   background-color: #fff;
   box-sizing: border-box;
   padding: 12px;
+  
 }
 

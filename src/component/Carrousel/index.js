@@ -7,9 +7,9 @@ const Index = (props) => {
     const imgSelect = useRef(null)
     const [slideIndex, setSlideIndex] = useState(1);
     
-    useEffect(()=>{
-        console.log(imgs);
-    },[])
+    // useEffect(()=>{
+    //     console.log(imgs);
+    // },[])
 
     function plusSlides(n) {
         showSlides(setSlideIndex(slideIndex + n));

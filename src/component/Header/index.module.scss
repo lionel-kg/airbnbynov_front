@@ -80,3 +80,34 @@
     background-color: rgba(255,56,92,255);   
     color: white;
 }
+
+.addPlace{
+    padding: 12px;
+    border: 1px solid grey;
+    border-radius: 21px;
+    background-color: transparent;
+    transition: box-shadow 1s;
+    &:hover{
+        cursor: pointer;
+        box-shadow: 0 0 5px #515151;
+    }
+}
+
+.modal{
+    padding: 15px;
+    z-index: 10000;
+    background-color: white;
+    border: gray 1px solid ;
+    border-radius: 3%;
+    color: black;
+    position: fixed;
+    width: 700px;
+    height: 700px;
+    left: 50%;
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    input{
+        width: 100%;
+    }
+  }

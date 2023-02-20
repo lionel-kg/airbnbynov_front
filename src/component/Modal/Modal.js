@@ -4,7 +4,7 @@ import TitlePage from "../../component/TitlePage";
 import { CloseOutlined } from '@mui/icons-material';
 
 const Modal = (props) => {
-    const {show, title,children,setShow} = props ;
+    const {show, title,children,setShow, classes} = props ;
     
     const closeModal = () => {
         if(show === true){setShow(false);}
@@ -13,7 +13,7 @@ const Modal = (props) => {
     return (
         <div className={styles.page_wrapper}>
         <div className={`${styles.page_overlay}`}>
-            <div className={`${styles.page_modal}`}>
+            <div className={`${classes? classes : styles.page_modal}`}>
                 <div className={styles.container}>
                     <div className={styles.container_title}>
                         <TitlePage title={title}  />

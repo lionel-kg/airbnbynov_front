@@ -5,43 +5,44 @@ import Image from 'next/image'
 import Logo from "../../../public/logo.png";
 import WishlistContext from '../../context/WishlistContext';
 import SearchContext from '../../context/SearchContext';
-import CustomButton from "../CustomButton/index";
 import { AccountCircleRounded, Filter, FilterAlt, FilterAltRounded, LanguageRounded, Menu, Search, TuneSharp  } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import Input from '../Input';
 import Modal from '../Modal/Modal';
 import typePlaceService from '../../service/typePlace.service';
 import CustomSelect from "../CustomSelect/index";
+import CustomButton from "../CustomButton/index";
 import placeService from '../../service/place.service';
+import AddplaceForm from '../Form/Places/Add';
 
-const preventDefault = f => e => {
-  e.preventDefault()
-  f(e)
-}
+// const preventDefault = f => e => {
+//   e.preventDefault()
+//   f(e)
+// }
 
 const Header = () => {
-  const {wishList} = useContext(WishlistContext);
+  // const {wishList} = useContext(WishlistContext);
   const {updateSearch} = useContext(SearchContext);
   const [openModal, setOpenModal] = useState(false);
   const [typePlaces, setTypePlaces] = useState({});
-  const [path, setPath] = useState("");
-  const [capacityDefault, setCapacityDefault] = useState({
-    min: 0,
-    max: 50
-  });
-  const [priceDefault, setPriceDefault] = useState({
-    min: 0,
-    max: 50
-  });
+  // const [path, setPath] = useState("");
+  // const [capacityDefault, setCapacityDefault] = useState({
+  //   min: 0,
+  //   max: 50
+  // });
+  // const [priceDefault, setPriceDefault] = useState({
+  //   min: 0,
+  //   max: 50
+  // });
   const [value, setValue] = useState();
   const router = useRouter();
 
-  const handleParam = setValue => e => setValue(e.target.value)
+  // const handleParam = setValue => e => setValue(e.target.value)
 
-  const handleSubmit = preventDefault(() => {
-    window.history.replaceState({ ...window.history.state, as: path, url: path }, '', path);
+  // const handleSubmit = preventDefault(() => {
+  //   window.history.replaceState({ ...window.history.state, as: path, url: path }, '', path);
 
-  })
+  // })
 
   const handleChangeInput = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value })
@@ -54,15 +55,13 @@ const Header = () => {
     })
   }, []);
 
-  const applyFilter = () => {
+  const submit = () => {
     if(value !== undefined && value.length !== 0){
-        Object.entries(value).forEach(([key,val])=>{
-        router.query[key] = val;
-      })
-      router.push(
-            router
-      );
+      
+
     }
+      
+    
     setOpenModal(false);
   }
 
@@ -83,9 +82,9 @@ const Header = () => {
         <div className={styles.header_menu}>
           <ul className={styles.nav_list}>
             <li className={styles.nav_item}>
-              <Link href="/about">
-                Mettre mon logement sur Airbnb
-              </Link>
+              <CustomButton classes={styles.addPlace} text={"Mettre mon logement sur Airbnb"} onClick={()=>{setOpenModal(!openModal)}}>
+                
+              </CustomButton>
             </li>
             <li className={styles.nav_item}>
               <Link href="/register">
@@ -100,7 +99,11 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        
+        { openModal ?
+            <Modal show={openModal} setShow={setOpenModal} title="Filtres" classes={styles.modal}>
+                  <AddplaceForm />
+            </Modal> : null
+        }
       </header>
     );
 }

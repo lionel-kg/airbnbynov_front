@@ -13,7 +13,9 @@ const Input = (props) => {
         handleChange,
         defaultValue,
         required,
-        label
+        label,
+        multiple,
+        accept
     } = props
 
     return (
@@ -28,6 +30,8 @@ const Input = (props) => {
                 onChange={handleChange} 
                 defaultValue={defaultValue}
                 value={value}
+                multiple={multiple}
+                accept={accept}
                 required={required} 
                 >
             </input>
