@@ -15,7 +15,8 @@ const Input = (props) => {
         required,
         label,
         multiple,
-        accept
+        accept,
+        ref
     } = props
 
     return (
@@ -33,6 +34,7 @@ const Input = (props) => {
                 multiple={multiple}
                 accept={accept}
                 required={required} 
+                ref={ref}
                 >
             </input>
         </div>
