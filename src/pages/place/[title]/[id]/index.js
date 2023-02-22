@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import placeService from "../../../../service/place.service";
 import { Favorite, Share, Star } from "@mui/icons-material";
+import BookingCard from "../../../../component/BookingCard/index";
 
 const Index = () => {
     const router = useRouter();
@@ -68,6 +69,13 @@ const Index = () => {
                                         );
                                     }
                                 })}
+                            </div>
+                        </div>
+
+                        <div className="section_detail">
+                            <div>description</div>
+                            <div className="container_booking_card">
+                                <BookingCard place={place} />
                             </div>
                         </div>
                     </div>
