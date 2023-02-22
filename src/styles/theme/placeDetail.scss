@@ -1,7 +1,75 @@
-.place_detail_container {
-    padding: 16px;
+.container {
+    padding-inline: 10%;
     .title {
         font-size: 1.5rem;
         font-weight: bold;
     }
+    .info_content{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 1% 0%;
+        .rating_comment {
+            display: inline-flex;
+            align-items: center;
+            & > * {
+                display: inline-flex;
+                padding: 8px 8px 8px 5px;
+                p{
+                    align-self: center;
+                }
+            }
+        }
+        .share_save {
+            display: flex;
+            flex-direction: row;
+            & > * {
+                display: inline-flex;
+                padding: 8px 8px 8px 5px;
+                &:hover {
+                    cursor: pointer;
+                }
+                p{
+                    align-self: center;
+                }
+            }
+        }
+    }
+    .container_img {
+        display: inline-flex;
+        border-top-left-radius: 20px ;
+        border-bottom-left-radius: 20px ;
+        height: 100%;
+        .main_img {
+            width: 500px;
+            padding: 0;
+            margin: 0;
+            height: 320px;
+            img{
+                border-top-left-radius: 20px ;
+                border-bottom-left-radius: 20px ;
+                min-width:100%;
+                max-height:100%;
+            }
+        }
+        .second_part {
+            width: 500px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            border-top-right-radius: 20px ;
+            border-bottom-right-radius: 20px ;
+            .thumbnail {
+                width: 240px;
+                height: 160px;
+                padding: 0px 5px 5px 5px;
+                img{
+                    width: inherit;
+                    height: inherit;
+                }
+                    
+            }
+        }
+    }
+
 }

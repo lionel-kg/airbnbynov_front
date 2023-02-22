@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { uuid } from 'uuidv4';
 import styles from "./index.module.scss"
 import Input from '../../Input';
 import CustomSelect from "../../CustomSelect/index";
@@ -6,12 +7,15 @@ import CustomButton from "../../CustomButton/index";
 import { useRouter } from 'next/router';
 import typePlaceService from '../../../service/typePlace.service';
 import UploadField from "../../Upload/index"
-import { getDownloadURL, uploadBytes,uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, uploadBytes,uploadBytesResumable, getStorage, ref } from "firebase/storage";
 import {fireStorage} from "../../../FireBase/initFirebase";
+
 import UserContext from '../../../context/UserContext';
 import AutoComplete from '../../AutoComplete';
 import addressTool from '../../../tools/address';
 import placeService from '../../../service/place.service';
+import { resolve } from 'styled-jsx/css';
+import { checkFormField } from '../../../tools/formField';
 
 
 
@@ -22,6 +26,9 @@ const add = () => {
     const [loading, setLoading] = useState(true);
     const [selectedImages, setSelectedImages] = useState([]);
     const [url, setUrl] = useState([]);
+    const [progress, setProgress] = useState(0);
+    const [trySend, setTrySend] = useState(false);
+    const [formField, setFormField] = useState(["title","pricing","description","image","type","address"])
 
     // const [path, setPath] = useState("");
     // const [capacityDefault, setCapacityDefault] = useState({
@@ -62,61 +69,69 @@ const add = () => {
       })
     }, []);
 
-    
 
-    const uploadFiles = async (filesList,newValue) => {
-        const files = [...filesList]
-        const promises = []
+    const uploadFiles = (filesList) => {
+        const folderName = uuid();
+        const files = [...filesList];
         let newUrl = [];
-        let newNewValue = {...newValue}
         files.map((file) => {
-            console.log('loop');
-            const storageRef = fireStorage.ref( `files/${file.name}`);
-
+            let extension = "png";
+            if(file.type === "image/jpg"|| file.type === "image/jpeg") {
+                extension = "jpg";
+            }
+            const fileName = uuid() + "." + extension;
+            const storageRef = fireStorage.ref( `images/${folderName}/${fileName}`);
             const uploadTask = uploadBytesResumable(storageRef, file);
-            promises.push(uploadTask)
             uploadTask.on(
                 "state_changed",
                 (snapshot) => {
-                    
+                    setProgress((snapshot.bytesTransferred/ snapshot.totalBytes) * 100);
                 },
                 (error) => console.log(error),
                 async () => {
                     await getDownloadURL(uploadTask.snapshot.ref).then((downloadURLs) => {
                         newUrl.push(downloadURLs);
-    
+                        setUrl((prev) => {
+                            let a =[...prev];
+                            a.push(downloadURLs);
+                            return a;
+                        });
                     });
                 }
             );
-
-
         })
-        Promise.all(promises)
-            .then(() => /*alert('All images uploaded')*/{console.log(newUrl); newNewValue.image = newUrl }).finally(()=>{
-                console.log(newNewValue.image);
-                placeService.createPlace(newNewValue,token);
-            })
-
+        return new Promise((resolve, reject) => {
+            resolve();
+        })
     };
 
 
-    useEffect(()=>{
+    useEffect(() => {
         
-    },[address])
-    
+        const urlLength = url.length;
+        const selectedImagesLength = Object.keys(selectedImages).length;
+        if (trySend === true && progress === 100 && Object.keys(value).length !== 0 && urlLength === selectedImagesLength) {
+            let newValue = {...value};
+            if(Object.keys(address).length > 0  && loading !== true){
+                newValue.address = addressTool.createAddress(address);
+            }
+            newValue.image = url;
+            //checkFormField(formField,newValue);
+            placeService.createPlace(newValue,token);
+            setTrySend(false);
+        }
+    }, [progress, trySend, value, url, selectedImages]);
   
     const submit = () => {
+        setTrySend(true);
         let newValue = {...value};
-        if(address !== undefined && loading !== true){
-                     //newValue.address =addressTool.createAddress(address);
-                      value.address = addressTool.createAddress(address);
-        }
-        uploadFiles(selectedImages,newValue).then(()=>{
-             
-               
-        }).finally(()=>{ //newValue.user = user._id; 
-            console.log(newValue.image);
-        })
+        return uploadFiles(selectedImages)
+        .then((imageUrl)=>{
+            newValue.image = imageUrl;
+            //placeService.createPlace(newValue,token);
+        }).catch((err)=> {
+            console.log(err);
+        });
     }
   
 

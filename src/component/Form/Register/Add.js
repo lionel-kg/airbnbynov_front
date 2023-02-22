@@ -1,36 +1,53 @@
-import {React, useState} from 'react';
-import CustomButton from "../../component/CustomButton";
-import TitlePage from "../../component/TitlePage";
-import Input from "../../component/Input";
-import authService from '../../service/auth.service';
+import {React, useState, useEffect} from 'react';
+import CustomButton from "../../CustomButton/index";
+import TitlePage from "../../TitlePage/index";
+import Input from "../../Input/index";
+import authService from '../../../service/auth.service';
+import styles from "./index.module.scss";
+import { useRouter } from 'next/router';
 
-const Register = () => {
+const Register = (props) => {
+    const {setOpenRegisterModal} = props;
     const [value, setValue] = useState({
       firstName:"",
       lastName:"",
       email:"",
       password:""
     });
+    const [withRoleOwner, setwithRoleOwner] = useState(false);
+    const router = useRouter();
 
     const handleChangeInput = (e) => {
       setValue({ ...value, [e.target.name]: e.target.value })
     }
         
+    useEffect(() => {
+        setValue({...value, UserType: withRoleOwner});
+    }, [withRoleOwner]);
 
     const submitRegister = (e) => {
         authService.register(value)
-        .then((res) => console.log(res))        
+        .then((res) => localStorage.setItem(res.data.token))        
         .catch(error => {
           // Handle error.
           console.log('An error occurred:', error);
-        });
+        }).finally(()=>{
+            setOpenRegisterModal(false);
+            router.push("/home");
+        })
         e.preventDefault();
       }
+
+
       
     return (
         <form className='form_group' method='POST' onSubmit={(e) => submitRegister(e)}>
             <div className='center'>
                 <TitlePage title="Register"/>
+            </div>
+            <div className={styles.selectRole}>
+                <h1 onClick={()=>{setwithRoleOwner(false)}} className={withRoleOwner === false ? styles.selected : null}>Voyageur</h1>
+                <h1 onClick={()=>{setwithRoleOwner(true)}} className={withRoleOwner === true ? styles.selected : null}>Propriétaire</h1>
             </div>
             <Input name="firstName" classes="form_input" type="text" placeHolder="doe" label="firstname" value={value.firstName} handleChange={(e) => handleChangeInput(e)}/> 
             <Input name="lastName" classes="form_input" type="text" placeHolder="johns" label="lastname" value={value.lastName} handleChange={(e) => handleChangeInput(e)}/>

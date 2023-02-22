@@ -7,6 +7,18 @@
   margin: auto;
 }
 
+.carouselContent {
+  overflow: hidden;
+  position: relative;
+}
+
+.imgCarousel {
+  top: 0;
+  left: 0;
+  display: inherit;
+  position: absolute;
+}
+
 /* Hide the images by default */
 .mySlides {
     display: inherit;

@@ -18,6 +18,7 @@ const clientCredentials = {
 
     if (!firebase.apps.length) {
         firebase.initializeApp(clientCredentials)
+        
         // Check that `window` is in scope for the analytics module!
         console.log('Firebase was successfully init.')
     }

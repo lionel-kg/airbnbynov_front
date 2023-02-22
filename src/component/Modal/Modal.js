@@ -15,9 +15,11 @@ const Modal = (props) => {
         <div className={`${styles.page_overlay}`}>
             <div className={`${classes? classes : styles.page_modal}`}>
                 <div className={styles.container}>
+                    { title ?
                     <div className={styles.container_title}>
                         <TitlePage title={title}  />
-                    </div>
+                    </div> : null
+                    }
                     <div className={styles.container_close} >
                         <CloseOutlined onClick={()=>{closeModal()}}/>
                     </div>

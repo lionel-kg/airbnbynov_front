@@ -25,7 +25,7 @@ const {name,setAddress} = props;
 
  return (
   <div className={styles.input_wrapper}>
-   <label>enter address :</label>
+   <label>adresse :</label>
    <input name={name} ref={inputRef} />
   </div>
  );

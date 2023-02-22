@@ -1,0 +1,14 @@
+.selectRole{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 35px;
+    margin-bottom: 10%;
+    & > * {
+        cursor: pointer;
+    }
+}
+
+.selected {
+    color: rgb(255, 56, 92)
+}

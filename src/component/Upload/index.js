@@ -7,6 +7,8 @@ const index = (props) => {
     
 
   return (
+    <>
+    <label>images :</label>
     <Input
     type="file"
     name="image"
@@ -14,6 +16,7 @@ const index = (props) => {
     accept="image/png , image/jpeg, image/webp"
     handleChange={handleChange}
     />
+    </>
   )
 }
 
