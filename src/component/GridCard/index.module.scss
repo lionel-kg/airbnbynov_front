@@ -1,9 +1,10 @@
-.grid_container{
-  padding: 10px;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px; /* add this line */
-  flex-wrap: wrap; /* add this line */
+.grid_container {
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px; /* add this line */
+    flex-wrap: wrap; /* add this line */
     .list_card {
         padding: 15px;
     }
