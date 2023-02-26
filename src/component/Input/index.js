@@ -6,6 +6,7 @@ const Input = (props) => {
     const {
         type,
         classes,
+        customWrapper,
         id,
         name,
         placeHolder,
@@ -20,7 +21,7 @@ const Input = (props) => {
     } = props
 
     return (
-        <div className={styles.input_wrapper}>
+        <div className={customWrapper? customWrapper : styles.input_wrapper}>
             <label>{label}</label>
             <input 
                 type={type}

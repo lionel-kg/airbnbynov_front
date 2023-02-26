@@ -73,7 +73,12 @@ const Index = () => {
                         </div>
 
                         <div className="section_detail">
-                            <div>description</div>
+                            <div className="section_one">
+                                <h1>description</h1>
+                                <p>
+                                    {place.description}
+                                </p>
+                            </div>
                             <div className="container_booking_card">
                                 <BookingCard place={place} />
                             </div>

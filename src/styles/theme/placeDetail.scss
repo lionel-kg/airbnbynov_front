@@ -86,13 +86,20 @@
             justify-content: flex-start !important;
             flex-wrap: wrap !important;
             width: 100% !important;
-            padding-left: 24px !important;
+            padding-top: 24px !important;
             padding-right: 24px !important;
             margin-left: auto !important;
             margin-right: auto !important;
             & > * {
                 width: 50%;
             }
+            .section_one{
+                overflow-wrap: break-word;
+            }
+        }
+        .container_booking_card{
+            display: flex;
+            justify-content: flex-end;
         }
     }
 }

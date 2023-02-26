@@ -1,0 +1,79 @@
+.wrapper_sticky {
+    position: sticky !important;
+    z-index: 1 !important;
+    display: inline-block !important;
+    padding-right: 1px !important;
+    width: 70%;
+        .container_card {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 12px;
+        margin-top: 20px;
+        box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+        padding: 27px;
+        .reminde_info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            .container_rating_comment{
+                display: inline-flex;
+                align-items: center;
+                .rating {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+                & > * {
+                    padding: 0 2px;
+                }
+            }
+        }
+        .calendar {
+            margin-top: 15px;
+            .select {    
+                position: relative;
+                margin-bottom: 15px;
+                display: inline-block;
+                overflow:hidden;
+                width: 100%;
+                font-size: 1rem;
+                cursor: pointer;
+                text-align: left;
+                white-space: nowrap;
+                color: #444;
+                outline: none;
+                border: 2px solid black;
+                border-radius: 1em;
+                background-color: #fff;
+                box-sizing: border-box;
+                padding: 12px;
+                
+              }
+        }
+        .btn_booking {
+            border-radius: 8px;
+            border-width: 1px;
+            border-style: solid;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            padding-left: 24px;
+            padding-right: 24px;
+            transition: box-shadow 0.2s ease,transform 0.1s ease;
+            border: none;
+            background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+        }
+
+        .text{
+            margin: 15px 0 !important;
+            white-space: normal !important;
+            text-align: center;
+            padding: 5px;
+        }
+        .price {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

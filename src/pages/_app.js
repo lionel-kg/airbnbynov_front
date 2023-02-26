@@ -7,7 +7,7 @@ import MainLayout from './layout/MainLayout';
 
 
 function MyApp({ Component, pageProps }) {
-  return <> <UserContextProvider><WishlistContextProvider><SearchContextProvider> <MainLayout> <Component {...pageProps} /></MainLayout></SearchContextProvider></WishlistContextProvider> </UserContextProvider> <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA35SwH7HsDR7Xqo-EcxZIQltNS_CN6B7w&libraries=places&callback=initMap"async></script></>
+  return <> <UserContextProvider><WishlistContextProvider><SearchContextProvider> <MainLayout> <Component {...pageProps} /></MainLayout></SearchContextProvider></WishlistContextProvider> </UserContextProvider> <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA35SwH7HsDR7Xqo-EcxZIQltNS_CN6B7w&libraries=places"async></script></>
 }
 
 export default MyApp

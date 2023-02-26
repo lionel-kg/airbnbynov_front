@@ -1,0 +1,19 @@
+.profil {
+    &_navigator {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-inline: 20%;
+        &_item {
+            padding: 20px;     
+            border-radius: 40px;
+            color: #FFFFFF;
+            cursor: pointer;
+            background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);  
+        }
+    }
+}
+.link {
+    color: #FFFFFF;
+    text-decoration: none;
+}

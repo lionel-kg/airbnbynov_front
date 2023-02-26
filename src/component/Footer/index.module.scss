@@ -1,5 +1,20 @@
-.footer__main {
+.footer_main {
     margin-top: 10px;
     background: black;
     padding: 20px;
+    width: 100%;
+}
+.profil_footer {
+    position: fixed;
+    bottom: 0;
+    background: black;
+    width: 100%;
+    padding: 20px;
+    z-index: 8;
+    pointer-events: none;
+    display: grid;
+    grid-template: repeat(2,auto) / repeat(3,33.333%);
+    grid-template-areas:
+        'left center right'
+        'bottom bottom bottom';
 }

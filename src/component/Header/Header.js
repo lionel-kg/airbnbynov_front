@@ -52,20 +52,20 @@ const Header = () => {
   //   window.history.replaceState({ ...window.history.state, as: path, url: path }, '', path);
 
   // })
-  useEffect(() => {
-    
-  }, [token]);
+  
 
   const handleChangeInput = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value })
   }
 
   useEffect(() => {
-    typePlaceService.getTypePlaces()
-    .then((res)=>{
-      setTypePlaces(res.data);
-    })
-  }, []);
+    if(token !== undefined && token !== null){
+      typePlaceService.getTypePlaces()
+      .then((res)=>{
+        setTypePlaces(res.data);
+      })
+    }
+  }, [token]);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -79,7 +79,7 @@ const Header = () => {
           <img src={Logo.src} alt="Netflix" />
         </div>
         <div className={styles.searchBar}>
-          <Input name="search" classes={styles.inputSearch} handleChange={(e)=>{ setTimeout(() => {
+          <Input name="search" classes={styles.inputSearch} customWrapper={styles.input_wrapper} handleChange={(e)=>{ setTimeout(() => {
             updateSearch(e.target.value);
           }, 1000);
           }}/>

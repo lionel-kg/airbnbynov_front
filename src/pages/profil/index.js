@@ -3,6 +3,7 @@ import userService from '../../service/user.service';
 import profilPicture from "../../../public/person.png";
 import profilWaf from "../../../public/waf.png";
 import TitlePage from "../../component/TitlePage/index";
+import ProfilNavigator from "../../component/ProfilNavigator/index"
 import CustomButton from "../../component/CustomButton/index";
 import Modal from '../../component/Modal/Modal';
 import Input from '../../component/Input';
@@ -54,33 +55,34 @@ const Index = () => {
 
     return (
         <div className='page_wrapper'>
-            <div className="container_title">
-                <TitlePage title="Mon profil"/>
-            </div>
-            <div className='box_profil'>
-                <div className='box_profil_picture'>
-                    <img src={profilWaf.src}></img>
-                    <div className='box_profil_content'>
+            <div className="profil_container">
+                <ProfilNavigator />
+                <div className='container_profil_info'>
+                    <img src={profilWaf.src}/>
+                    <div className='box_info_update'>
                         <div>
-                            nom:
-                            <span>{" "+user?.firstName}</span>
-                        </div>
-                        <div>
-                            prenom:
-                            <span> {" "+user?.lastName}</span>
-                        </div>
-                        <div>
-                            email: 
-                            <span> {" "+user?.email}</span>
+                            <div>
+                                nom:
+                                <span>{" "+user?.firstName}</span>
+                            </div>
+                            <div>
+                                prenom:
+                                <span> {" "+user?.lastName}</span>
+                            </div>
+                            <div>
+                                email: 
+                                <span> {" "+user?.email}</span>
+                            </div>
                         </div>
                         <div>
                             <CustomButton text="Modifier" classes="btn btn_color-black" onClick={()=>{openModal()}} />
                         </div>
-
                     </div>
                 </div>
-
             </div>
+            
+            
+
                         { show === true ?
                             <Modal show={show} setShow={setShow} title="Modifier"> 
                                 <Input name="firstName" classes="form_input" type="text" label="firstname" defaultValue={user.firstName} value={value.firstName} handleChange={(e) => handleChangeInput(e)}/>
