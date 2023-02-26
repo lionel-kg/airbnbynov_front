@@ -9,7 +9,7 @@ const Index = (props) => {
     })
     return (
         <div className={styles.grid_container}>
-             {loading !== true && Object.keys(places).length !== 0 ? places.map((place) => {
+             {loading !== true ? places.map((place) => {
                 return <div key={place._id} className={styles.list_card}><Card place={place}/></div>
             })
             : "loading"}

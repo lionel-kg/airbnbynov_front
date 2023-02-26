@@ -16,7 +16,8 @@ import placeService from '../../service/place.service';
 import AddplaceForm from '../Form/Places/Add';
 import AddUserForm from '../Form/Register/Add';
 import LoginForm from '../Form/Login/index';
-import UserContext from '../../context/UserContext';
+import {userContext} from "../../context/UserContext";
+
 
 
 // const preventDefault = f => e => {
@@ -26,13 +27,12 @@ import UserContext from '../../context/UserContext';
 
 const Header = () => {
   // const {wishList} = useContext(WishlistContext);
+  const {state: globalState, dispatch } = useContext(userContext);
   const {updateSearch} = useContext(SearchContext);
-  const {token} = useContext(UserContext);
   const [openModal, setOpenModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-
   const [typePlaces, setTypePlaces] = useState({});
   // const [path, setPath] = useState("");
   // const [capacityDefault, setCapacityDefault] = useState({
@@ -59,16 +59,16 @@ const Header = () => {
   }
 
   useEffect(() => {
-    if(token !== undefined && token !== null){
+    if(globalState.user?.token !== undefined && globalState.user?.token !== null){
       typePlaceService.getTypePlaces()
       .then((res)=>{
         setTypePlaces(res.data);
       })
     }
-  }, [token]);
+  }, [globalState]);
 
   const logout = () => {
-    localStorage.removeItem("token");
+    dispatch({ type: "logout"});
     setOpenMenu(false);
   }
 
@@ -106,7 +106,7 @@ const Header = () => {
                 </button>
                 { openMenu ?
                   <div className={styles.dropdown_menu}>
-                    { token !== undefined && token !== null ?
+                    { globalState.user !== null ?
                       <> 
                         <Link href="/profil" className={styles.item_menu+" "+styles.fullWith} onClick={()=> {setOpenMenu(false)}}>
                             Profil

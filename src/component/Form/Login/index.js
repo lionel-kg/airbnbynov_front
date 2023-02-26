@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from 'react';
+import {React, useState, useEffect, useContext} from 'react';
 import CustomButton from "../../CustomButton/index";
 import TitlePage from "../../TitlePage/index";
 import Input from "../../Input/index";
@@ -6,6 +6,8 @@ import authService from '../../../service/auth.service';
 import styles from "./index.module.scss";
 import { useRouter } from 'next/router';
 import Notification from "../../../component/Notification/Notification";
+import {userContext} from "../../../context/UserContext";
+
 
 const Index = (props) => {
     const {setOpenLoginModal} = props;
@@ -16,6 +18,8 @@ const Index = (props) => {
     });
     const [type, setType] = useState(null);
     const [message, setMessage] = useState(null);
+    const { dispatch } = useContext(userContext);
+
 
 
     const handleChangeInput = (e) => {
@@ -26,6 +30,7 @@ const Index = (props) => {
         authService.login(value)
         .then((res) => {
           localStorage.setItem("token",res.data.token)
+          dispatch({ type: "login", payload: res.data.user });
           setType("success");
           setMessage("login validé");
           setOpenLoginModal(false);

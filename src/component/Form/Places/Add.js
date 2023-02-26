@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import {React, useEffect, useState, useContext} from 'react';
 import { uuid } from 'uuidv4';
 import styles from "./index.module.scss"
 import Input from '../../Input';
@@ -9,8 +9,7 @@ import typePlaceService from '../../../service/typePlace.service';
 import UploadField from "../../Upload/index"
 import { getDownloadURL, uploadBytes,uploadBytesResumable, getStorage, ref } from "firebase/storage";
 import {fireStorage} from "../../../FireBase/initFirebase";
-
-import UserContext from '../../../context/UserContext';
+import {userContext} from '../../../context/UserContext';
 import AutoComplete from '../../AutoComplete';
 import addressTool from '../../../tools/address';
 import placeService from '../../../service/place.service';
@@ -21,7 +20,7 @@ import { checkFormField } from '../../../tools/formField';
 
 const add = () => {
     const [typePlaces, setTypePlaces] = useState({});
-    const {user,token} = useContext(UserContext);
+    const { state: globalState } = useContext(userContext);
     const [address, setAddress] = useState({});
     const [loading, setLoading] = useState(true);
     const [selectedImages, setSelectedImages] = useState([]);
@@ -110,6 +109,7 @@ const add = () => {
         
         const urlLength = url.length;
         const selectedImagesLength = Object.keys(selectedImages).length;
+        
         if (trySend === true && progress === 100 && Object.keys(value).length !== 0 && urlLength === selectedImagesLength) {
             let newValue = {...value};
             if(Object.keys(address).length > 0  && loading !== true){
@@ -117,7 +117,7 @@ const add = () => {
             }
             newValue.image = url;
             //checkFormField(formField,newValue);
-            placeService.createPlace(newValue,token);
+            placeService.createPlace(newValue,globalState.user.token);
             setTrySend(false);
         }
     }, [progress, trySend, value, url, selectedImages]);
@@ -150,7 +150,7 @@ const add = () => {
                         <CustomSelect name="type" options={typePlaces} handleChange={(e)=>{handleChangeInput(e)}} classes={styles.select}/>
                 </div>
             </div>
-            <CustomButton type="submit" classes="btn btn_color-black btn_full" text="Afficher" onClick={(e)=>{submit();}}/>
+            <CustomButton type="submit" classes="btn btn_color-black btn_full" text="Ajouter" onClick={(e)=>{submit();}}/>
         </> : "loading"
         
         }

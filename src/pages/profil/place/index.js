@@ -2,22 +2,24 @@ import React, {useEffect,useState,useContext} from 'react';
 import ProfilNavigator from "../../../component/ProfilNavigator/index";
 import GridCard from "../../../component/GridCard/index";
 import placeService from '../../../service/place.service';
-import UserContext from "../../../context/UserContext"
+import {userContext} from '../../../context/UserContext';
+import WithAuth from '../../../HOC/withAuth';
 
 const Index = () => {
+    
     const [places, setPlaces] = useState([]);
     const [loading, setLoading] = useState(true);
-    const {user,token} = useContext(UserContext);
+    const { state: globalState } = useContext(userContext);
+
 
     useEffect(()=>{
-        if(token !== undefined && token !== null){
-            placeService.getMyPlace(token).then((res)=> {
-                console.log(res.data);
-                setPlaces(res);
+        if(globalState.user?.token !== undefined && globalState.user?.token !== null){
+            placeService.getMyPlace(globalState.user.token).then((res)=> {
+                setPlaces(res.data);
                 setLoading(false);
             })
         }
-    },[token])
+    },[globalState])
 
     return (
         <div className='page_wrapper'>
@@ -31,4 +33,4 @@ const Index = () => {
     );
 }
 
-export default Index;
+export default WithAuth(Index);

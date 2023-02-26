@@ -1,47 +1,50 @@
-import {createContext, React, useState, useEffect} from 'react';
-import userService from "../service/user.service";
-
-const UserContext = createContext({
-    user: {},
-});
-
-export default UserContext;
-
-export const UserContextProvider = ({children}) => {
-
-    const [user, setUser] = useState({});
-    const [token, setToken] = useState(null);
-
-    const handleChangeStorage = () => {
-        if(localStorage.getItem("token") !== null && user._id === undefined ) {
-                userService.getMe(localStorage.getItem("token")).then((res) => {
-                    setUser(res.data);
-                    setToken(localStorage.getItem("token"));
-                })
-        } else {
-            setUser({});
-            setToken(null)
+import React, { createContext, useReducer } from "react";
+const { REACT_APP_LOCALSTORAGE_ROLE_KEY, REACT_APP_LOCALSTORAGE_TOKEN_KEY } = process.env;
+const initialValue = { user: null };
+const userContext = createContext(initialValue);
+const { Provider } = userContext;
+const StateProvider = ({ children }) => {
+    const [state, dispatch] = useReducer((state, action) => {
+        switch (action.type) {
+            case "login":
+                let token = localStorage.getItem("token")
+                let {
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName,
+                } = action.payload;
+                if (firstName === null) {
+                    firstName = "Prénom";
+                }
+                if (lastName === null) {
+                    lastName = "Nom";
+                }
+                let newStateLogin = { ...state };
+                newStateLogin.user = {
+                    email: email,
+                    firstname: firstName,
+                    lastname: lastName,
+                    token: token
+                };
+                return newStateLogin;
+            case "updateUser":
+                let newUserUpdate = {...state};
+                newUserUpdate.user = {
+                    email: action.payload.email,
+                    firstname: action.payload.firstName,
+                    lastname: action.payload.lastName,
+                };
+                return newUserUpdate;
+            case "logout":
+                let newLogoutState = { ...state };
+                newLogoutState.user = null;
+                localStorage.removeItem("token");
+                return newLogoutState;
+            default:
+                throw new Error("Action not found !!");
         }
-    }
+    }, initialValue);
+    return <Provider value={{ state, dispatch }}>{children}</Provider>;
+};
 
-    useEffect(() => {
-        handleChangeStorage();
-    }, []);
-
-    // useEffect(() => {
-    //     window.addEventListener('storage', handleChangeStorage);
-    //     return () => window.removeEventListener('storage', handleChangeStorage);
-    // }, []);
-
-    const context = {
-        user,
-        token
-    }
-
-    return (
-        <UserContext.Provider value={context}>
-            {children}
-        </UserContext.Provider>
-    );
-}
-
+export { userContext, StateProvider };

@@ -45,4 +45,13 @@ export default {
       };
       return axios.get(process.env.NEXT_PUBLIC_API_BASE_URL+"/api/v1/booking/travel",customConfig)
     },
+    updateBooking(id,status,token){
+      let customConfig = {
+        headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+        }
+      };
+      return axios.put(process.env.NEXT_PUBLIC_API_BASE_URL+"/api/v1/booking/"+id+"/"+status,{} ,customConfig)
+    }
 }

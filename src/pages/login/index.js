@@ -1,11 +1,11 @@
-import {React, useState} from 'react';
+import {React, useState, useContext} from 'react';
 import CustomButton from "../../component/CustomButton";
 import TitlePage from "../../component/TitlePage";
 import Input from "../../component/Input";
-import axios from 'axios';
 import authService from '../../service/auth.service';
 import { useRouter } from 'next/router';
 import Notification from "../../component/Notification/Notification"
+import {userContext} from "../../context/UserContext";
 
 const Login = () => {
     const router = useRouter(); 
@@ -15,6 +15,7 @@ const Login = () => {
     });
     const [type, setType] = useState(null);
     const [message, setMessage] = useState(null);
+    const { dispatch } = useContext(userContext);
 
 
     const handleChangeInput = (e) => {
@@ -25,6 +26,7 @@ const Login = () => {
         authService.login(value)
         .then((res) => {
           localStorage.setItem("token",res.data.token)
+          dispatch({ type: "login", payload: res.data.user });
           setType("success");
           setMessage("login validé");
           setTimeout(()=>{

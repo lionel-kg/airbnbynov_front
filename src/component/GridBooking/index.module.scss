@@ -1,0 +1,38 @@
+.booking{
+    &_image{
+        width: 200px;
+        height: 150px;
+    }
+    &_grid{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        box-shadow: rgb(0 0 0 / 12%) 6px 6px 16px;
+        padding: 20px 60px;
+        & > div {
+            padding: 0 20px;
+        }
+    }
+
+    &__container_info{
+        display: flex;
+        flex-direction: row;
+    }
+}
+.title {
+}
+.booking_action {
+    padding: 0 10px;
+    .btn { 
+        padding: 10px;
+        border-radius: 20px;
+        color: #FFFFFF;
+        margin: 2px;
+        &_accepted {
+            background-color: green;
+        }
+        &_denied{
+            background-color: red;
+        }
+    }
+}

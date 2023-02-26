@@ -1,15 +1,33 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ProfilNavigator from "../../../component/ProfilNavigator/index"
-
+import {userContext} from '../../../context/UserContext';
+import bookingService from '../../../service/booking.service';
+import GridBooking from "../../../component/GridBooking/index"
+import WithAuth from '../../../HOC/withAuth';
 
 const Index = () => {
+    const { state: globalState } = useContext(userContext);
+    const [travels, setTravels] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        console.log(globalState.user);
+        if(globalState.user?.token !== undefined && globalState.user?.token !== null){
+            bookingService.getMyTravel(globalState.user.token).then((res)=> {
+                setTravels(res.data);
+                setLoading(false);
+            })
+        }
+    },[globalState])
+
     return (
         <div className='page_wrapper'>
             <div className="profil_container">
                 <ProfilNavigator />
+                <GridBooking bookings={travels} loading={loading}/>
             </div>
         </div>
     );
 }
 
-export default Index;
+export default WithAuth(Index);
