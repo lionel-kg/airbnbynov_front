@@ -2,8 +2,12 @@ export default {
     
     createAddress(address){
         let newAddress = {}
+        let streetNumber = null; 
         address.address_components.forEach(element => {
             if(element["types"]){
+                if(element["types"].includes("street_number")){
+                    streetNumber = element.long_name;
+                }
                 if(element["types"].includes("postal_code")){
                     newAddress.zipCode = element.long_name;
                 }
@@ -11,7 +15,12 @@ export default {
                     newAddress.city = element.long_name;
                 }
                 if(element["types"].includes("route")) {
-                    newAddress.street = element.long_name;
+                    if(streetNumber !== null){
+                        newAddress.street = streetNumber+" "+element.long_name;
+                    }
+                    else {
+                        newAddress.street = element.long_name;
+                    }
                 }
             }
         });

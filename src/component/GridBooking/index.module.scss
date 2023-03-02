@@ -9,6 +9,7 @@
         align-items: center;
         box-shadow: rgb(0 0 0 / 12%) 6px 6px 16px;
         padding: 20px 60px;
+        margin-bottom: 12px;
         & > div {
             padding: 0 20px;
         }
@@ -22,17 +23,38 @@
 .title {
 }
 .booking_action {
-    padding: 0 10px;
-    .btn { 
-        padding: 10px;
-        border-radius: 20px;
-        color: #FFFFFF;
-        margin: 2px;
-        &_accepted {
-            background-color: green;
-        }
-        &_denied{
-            background-color: red;
-        }
-    }
+    padding: 0 10px;    
 }
+.accept_btn,
+    .reject_btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 32px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    }
+
+    .accept_btn {
+    color: #fff;
+    background-color: #ff5a5f;
+    border: none;
+    margin-right: 8px;
+    }
+
+    .accept_btn:hover {
+    background-color: #e0484c;
+    }
+
+    .reject_btn {
+    color: #484848;
+    background-color: #fff;
+    border: 2px solid #e6e6e6;
+    }
+
+    .reject_btn:hover {
+    border-color: #d4d4d4;
+    }

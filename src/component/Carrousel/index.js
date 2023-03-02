@@ -36,15 +36,24 @@ const Index = (props) => {
                 })}
             </div>
             {imgs.length > 1 ? 
-            <>
-                <a className={styles.prev} onClick={(e) => handleSlideIndex(false)}>
-                    <ArrowBackRounded />
-                </a>
-                <a className={styles.next} onClick={(e) => handleSlideIndex(true)}>
-                    <ArrowForwardRounded />
-                </a>
-            </> : null}
-            
+                <>
+                    <a className={styles.prev} onClick={(e) => handleSlideIndex(false)}>
+                        <ArrowBackRounded />
+                    </a>
+                    <a className={styles.next} onClick={(e) => handleSlideIndex(true)}>
+                        <ArrowForwardRounded />
+                    </a>
+                    <div className={styles.dotContainer}>
+                        {imgs?.map((img, key) => (
+                            <div 
+                                key={key} 
+                                className={`${styles.dot} ${slideIndex === key ? styles.active : ""}`} 
+                                onClick={() => setSlideIndex(key)}
+                            />
+                        ))}
+                    </div>
+                </> 
+            : null}
         </>
     );
 };

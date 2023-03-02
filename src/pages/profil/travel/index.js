@@ -4,6 +4,7 @@ import {userContext} from '../../../context/UserContext';
 import bookingService from '../../../service/booking.service';
 import GridBooking from "../../../component/GridBooking/index"
 import WithAuth from '../../../HOC/withAuth';
+import SearchBar from "../../../component/SearchBar/index";
 
 const Index = () => {
     const { state: globalState } = useContext(userContext);
@@ -11,7 +12,6 @@ const Index = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        console.log(globalState.user);
         if(globalState.user?.token !== undefined && globalState.user?.token !== null){
             bookingService.getMyTravel(globalState.user.token).then((res)=> {
                 setTravels(res.data);

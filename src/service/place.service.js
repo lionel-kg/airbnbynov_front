@@ -39,4 +39,22 @@ export default {
         };
         return axios.get(process.env.NEXT_PUBLIC_API_BASE_URL+'/api/v1/place/me', customConfig)
     },
+    deleteMyPlace(token,id) {
+        let customConfig = {
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+            }
+        };
+        return axios.delete(process.env.NEXT_PUBLIC_API_BASE_URL+'/api/v1/place/me/'+id, customConfig)
+    },
+    updateMyPlace(body,token,id) {
+        let customConfig = {
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+            }
+        };
+        return axios.put(process.env.NEXT_PUBLIC_API_BASE_URL+'/api/v1/place/me/'+id,body, customConfig)
+    }
 }

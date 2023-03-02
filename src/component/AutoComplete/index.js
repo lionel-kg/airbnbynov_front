@@ -3,7 +3,7 @@ import Input from "../Input";
 import styles from "./index.module.scss"
 
 const AutoComplete = (props) => {
-const {name,setAddress} = props;
+const {name,setAddress, defaultValue, classes} = props;
  const autoCompleteRef = useRef();
  const inputRef = useRef();
  const options = {
@@ -26,7 +26,7 @@ const {name,setAddress} = props;
  return (
   <div className={styles.input_wrapper}>
    <label>adresse :</label>
-   <input name={name} ref={inputRef} />
+   <input name={name} ref={inputRef} defaultValue={defaultValue} />
   </div>
  );
 };

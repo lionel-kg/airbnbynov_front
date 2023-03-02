@@ -16,6 +16,7 @@ const Input = (props) => {
         required,
         label,
         multiple,
+        step,
         accept,
         ref
     } = props
@@ -32,6 +33,7 @@ const Input = (props) => {
                 onChange={handleChange} 
                 defaultValue={defaultValue}
                 value={value}
+                step={step}
                 multiple={multiple}
                 accept={accept}
                 required={required} 

@@ -18,7 +18,8 @@ import { checkFormField } from '../../../tools/formField';
 
 
 
-const add = () => {
+const edit = (props) => {
+    const {place,setIsUpdate,setOpenEditModal} = props;
     const [typePlaces, setTypePlaces] = useState({});
     const { state: globalState } = useContext(userContext);
     const [address, setAddress] = useState({});
@@ -66,12 +67,14 @@ const add = () => {
         setTypePlaces(res.data);
         setLoading(false)
       })
+
     }, []);
 
 
+
     const uploadFiles = (filesList) => {
-        const folderName = uuid();
         const files = [...filesList];
+        const folderName = uuid();
         let newUrl = [];
         files.map((file) => {
             let extension = "png";
@@ -109,29 +112,45 @@ const add = () => {
         
         const urlLength = url.length;
         const selectedImagesLength = Object.keys(selectedImages).length;
-        
-        if (trySend === true && progress === 100 && Object.keys(value).length !== 0 && urlLength === selectedImagesLength) {
+        const updateWithoutImages = selectedImagesLength === 0;
+        if (trySend === true && progress === 100 && updateWithoutImages !== true && urlLength === selectedImagesLength) {
             let newValue = {...value};
             if(Object.keys(address).length > 0  && loading !== true){
                 newValue.address = addressTool.createAddress(address);
             }
-            newValue.image = url;
+            let newUrl  = url.concat(place.image);
+            newValue.image = newUrl;
             //checkFormField(formField,newValue);
-            placeService.createPlace(newValue,globalState.user.token);
+            placeService.updateMyPlace(newValue,globalState.user.token,place._id).then(()=>{
+                setIsUpdate(true);
+                setOpenEditModal(false);
+            });
             setTrySend(false);
+        } else if(trySend === true && updateWithoutImages === true && (Object.keys(value).length !== 0 || Object.keys(address).length !== 0 )){
+            let newValue = {...value};
+            if(Object.keys(address).length > 0  && loading !== true){
+                newValue.address = addressTool.createAddress(address);
+            }
+            placeService.updateMyPlace(newValue,globalState.user.token,place._id).then(()=>{
+                setIsUpdate(true);
+                setOpenEditModal(false);
+            });;
+
         }
     }, [progress, trySend, value, url, selectedImages]);
   
     const submit = () => {
         setTrySend(true);
         let newValue = {...value};
-        return uploadFiles(selectedImages)
-        .then((imageUrl)=>{
-            newValue.image = imageUrl;
-            //placeService.createPlace(newValue,token);
-        }).catch((err)=> {
-            console.log(err);
-        });
+        if(selectedImages.length !== 0) {
+            return uploadFiles(selectedImages)
+            .then((imageUrl)=>{
+                newValue.image = imageUrl;
+                //placeService.createPlace(newValue,token);
+            }).catch((err)=> {
+                console.log(err);
+            });
+        }
     }
   
 
@@ -140,17 +159,21 @@ const add = () => {
         {loading === false?
         <>
             <div>
-                <Input name="title" classes="form_input" type="text" label="titre" defaultValue={""}  handleChange={(e) => handleChangeInput(e)}/>
-                <Input name="pricing" classes="form_input" type="number"  step="0.01"  label="prix par jour"  defaultValue={""}  handleChange={(e) => handleChangePrice(e)}/>                     
-                <Input name="capacity" classes="form_input" type="number" label="capacité" defaultValue={""}  handleChange={(e) => handleChangeInput(e)}/>
-                <Input name="description" type="textarea"  label="description"  defaultValue={""} handleChange={(e) => handleChangeInput(e)}/>      
+                <Input name="title" classes="form_input" type="text" label="titre" defaultValue={place.title}  handleChange={(e) => handleChangeInput(e)}/>
+                <Input name="pricing" classes="form_input" type="text"  label="prix par jour"  defaultValue={place.pricing.perDay}  handleChange={(e) => handleChangePrice(e)}/>                     
+                <Input name="capacity" classes="form_input" type="text" label="capacité" defaultValue={place.capacity}  handleChange={(e) => handleChangeInput(e)}/>
+                <Input name="description" type="textarea"  label="description"  defaultValue={place.description} handleChange={(e) => handleChangeInput(e)}/>      
                 <UploadField handleChange={(e) => { setSelectedImages(e.target.files);}} />              
-                <AutoComplete setAddress={setAddress}/>           
+                <div className={styles.containerAutoComplete}>
+                    <AutoComplete setAddress={setAddress} classes={styles.autoComplete}/>           
+                    <span>{place.address.street+" "+place.address.city+" "+place.address.zipCode}</span>
+                </div>
+                
                 <div>
-                        <CustomSelect name="type" options={typePlaces} handleChange={(e)=>{handleChangeInput(e)}} classes={styles.select}/>
+                    <CustomSelect name="type" options={typePlaces} handleChange={(e)=>{handleChangeInput(e)}} classes={styles.select} defaultValue={place.type}/>
                 </div>
             </div>
-            <CustomButton type="submit" classes="btn btn_color-black btn_full" text="Ajouter" onClick={(e)=>{submit();}}/>
+            <CustomButton type="submit" classes="btn btn_color-black btn_full" text="Modifier" onClick={(e)=>{submit();}}/>
         </> : "loading"
         
         }
@@ -159,4 +182,4 @@ const add = () => {
   )
 }
 
-export default add
+export default edit

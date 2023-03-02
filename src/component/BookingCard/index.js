@@ -5,11 +5,11 @@ import DateRangePickerField from '../DateRangePicker';
 import CustomSelect from "../CustomSelect/index";
 import CustomButton from "../CustomButton/index";
 import bookingService from '../../service/booking.service';
-import userContext from "../../context/UserContext";
+import {userContext} from "../../context/UserContext";
 
 const Index = ( props) => {
     const {place} = props;
-    const {user, token} = useContext(userContext);
+    const { state: globalState } = useContext(userContext);
     const [dateStart, setDateStart] = useState(null);
     const [dateEnd, setDateEnd] = useState(null);
     const [option, setOption] = useState([]);
@@ -31,9 +31,11 @@ const Index = ( props) => {
         if(dateStart !== null && dateEnd !== null) {
             newValue.dateStart = dateStart;
             newValue.dateEnd = dateEnd;
-            setNbNight(dateEnd.diff(dateStart,'days'))
+            let nbNight = dateEnd.diff(dateStart,'days')
+            setNbNight(nbNight)
+            newValue.price = place.pricing.perDay * nbNight;
         }
-        if (user !== null && place.owner !== null)
+        if (globalState.user !== null && place.owner !== null)
         {   
             newValue.owner = place.owner;
         }
@@ -51,7 +53,7 @@ const Index = ( props) => {
         </>
     }
     const submit = () => {
-        bookingService.createBooking(value,token)
+        bookingService.createBooking(value,globalState.user.token)
         console.log(value);
     }
 

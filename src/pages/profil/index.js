@@ -67,7 +67,7 @@ const Index = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <CustomButton text="Modifier" classes="btn btn_color-black" onClick={()=>{openModal()}} />
+                                    <CustomButton text="Modifier" classes="btn btn_edit_profil" onClick={()=>{openModal()}} />
                                 </div>
                             </div>
                         </> : "loading"
@@ -84,7 +84,7 @@ const Index = () => {
                                 <Input name="firstName" classes="form_input" type="text" label="firstname" defaultValue={globalState.user.firstname} value={value.firstName} handleChange={(e) => handleChangeInput(e)}/>
                                 <Input name="lastName" classes="form_input" type="text"  label="lastname"  defaultValue={globalState.user.lastname} value={value.lastName} handleChange={(e) => handleChangeInput(e)}/>
                                 <Input name="email" classes="form_input" type="text"  label="email" defaultValue={globalState.user.email} value={value.email} handleChange={(e) => handleChangeInput(e)}/>
-                                <CustomButton type="submit" classes="btn btn_color-black" text="update" onClick={()=>{update();}} />
+                                <CustomButton type="submit" classes="btn btn_edit_profil" text="update" onClick={()=>{update();}} />
                             </Modal>
                         
                              : <></>

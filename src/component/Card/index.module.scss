@@ -20,6 +20,13 @@
             right: 8px;
             top: 8px;
         }
+        .delete {
+            & > * {
+                &:hover{
+                    color: red;
+                }   
+            }
+        }
     }
     .title {
         margin-bottom: 3px;
@@ -59,4 +66,74 @@
         height: 100%;
         z-index: 2;
     }
+    .modal{
+        padding: 15px;
+        z-index: 10000;
+        background-color: white;
+        border: gray 1px solid ;
+        border-radius: 3%;
+        color: black;
+        position: fixed;
+        width: 700px;
+        height: 700px;
+        left: 50%;
+        top: 50%;
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        input{
+            width: 100%;
+        }
+      }
+    .modalWarning {
+        padding: 15px;
+        z-index: 10000;
+        background-color: white;
+        border: gray 1px solid;
+        border-radius: 3%;
+        color: black;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        .warningMsg{
+            margin-bottom: 10px;
+        } 
+       .groupButton{
+            text-align: center;
+        }
+    }
 }
+.accept_btn,
+    .reject_btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 32px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    }
+
+    .accept_btn {
+    color: #fff;
+    background-color: #ff5a5f;
+    border: none;
+    margin-right: 8px;
+    }
+
+    .accept_btn:hover {
+    background-color: #e0484c;
+    }
+
+    .reject_btn {
+    color: #484848;
+    background-color: #fff;
+    border: 2px solid #e6e6e6;
+    }
+
+    .reject_btn:hover {
+    border-color: #d4d4d4;
+    }

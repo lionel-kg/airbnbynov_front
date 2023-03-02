@@ -49,12 +49,12 @@ const index = (props) => {
                     <h1>{booking.status}</h1>
                 </div>
                 <div className={styles.booking_action}>
-                  { booking.status === "WAITING" && globalState.user?.email === booking.owner.email  ?
+                  { booking.status === "WAITING" && router.pathname.includes("booking") && globalState.user?.email === booking.owner.email  ?
                     <>
-                      <CustomButton classes={styles.btn+" "+styles.btn_accepted} text={"Accepter"} onClick={()=>{
+                      <CustomButton classes={styles.btn+" "+styles.accept_btn} text={"Accepter"} onClick={()=>{
                         updateBooking(booking._id,"VALIDATE"); setIsUpdate(false);
                       }}/>
-                      <CustomButton classes={styles.btn+" "+styles.btn_denied} text={"Refuser"} onClick={()=>{
+                      <CustomButton classes={styles.btn+" "+styles.reject_btn} text={"Refuser"} onClick={()=>{
                         updateBooking(booking._id,"DECLINE"); setIsUpdate(false);
                       }}/>
                     </> : null

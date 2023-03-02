@@ -147,7 +147,7 @@ const Header = () => {
             </Modal> : null
         }
         { openModal ?
-            <Modal show={openModal} setShow={setOpenModal} title="Filtres" classes={styles.modal}>
+            <Modal show={openModal} setShow={setOpenModal} title="Creation" classes={styles.modal}>
                   <AddplaceForm />
             </Modal> : null
         }

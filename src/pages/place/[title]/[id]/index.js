@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import placeService from "../../../../service/place.service";
 import { Favorite, Share, Star } from "@mui/icons-material";
 import BookingCard from "../../../../component/BookingCard/index";
+import GaleryImage from "../../../../component/GaleryImage/index";
 
 const Index = () => {
     const router = useRouter();
@@ -56,11 +57,10 @@ const Index = () => {
                             </div>
                         </div>
                         <div className="container_img">
-                            <div className="main_img">
-                                <img src={place.image[0]} alt="Netflix" />
-                            </div>
-                            <div className="second_part">
-                                {place.image.map((img, index) => {
+                            
+                            
+                                <GaleryImage images={place.image} />
+                                {/* {place.image.map((img, index) => {
                                     if (index !== 0) {
                                         return (
                                             <div className="thumbnail">
@@ -68,8 +68,7 @@ const Index = () => {
                                             </div>
                                         );
                                     }
-                                })}
-                            </div>
+                                })} */}
                         </div>
 
                         <div className="section_detail">

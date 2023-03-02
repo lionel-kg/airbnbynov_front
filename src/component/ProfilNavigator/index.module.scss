@@ -1,19 +1,32 @@
 .profil {
-    &_navigator {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding-inline: 20%;
-        &_item {
-            padding: 20px;     
-            border-radius: 40px;
-            color: #FFFFFF;
-            cursor: pointer;
-            background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);  
-        }
+  &_navigator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: 20%;
+    margin-bottom: 16px;
+    &_item {
+      padding: 20px;     
+      border-radius: 40px;
+      color: #FFFFFF;
+      cursor: pointer;
+      background: rgb(22, 16, 16);
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+      &:hover {
+        background: #E31C5F;
+        opacity: 0.8;
+      }
+     
     }
+  }
 }
 .link {
-    color: #FFFFFF;
-    text-decoration: none;
+  color: #FFFFFF;
+  text-decoration: none;
 }
+
+.active {
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+    color: #FFFFFF;
+  }
