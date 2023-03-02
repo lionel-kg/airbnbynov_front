@@ -4,6 +4,7 @@ import placeService from "../../../../service/place.service";
 import { Favorite, Share, Star } from "@mui/icons-material";
 import BookingCard from "../../../../component/BookingCard/index";
 import GaleryImage from "../../../../component/GaleryImage/index";
+import Link from "next/link";
 
 const Index = () => {
     const router = useRouter();
@@ -42,7 +43,7 @@ const Index = () => {
                                 </div>
                                 .
                                 <div>
-                                    <p>{place.address.street + " " + place.address.zipCode + ", " + place.address.city}</p>
+                                    <Link href={"https://www.google.com/maps?q="+place.address.street + " " + place.address.zipCode + ", " + place.address.city }>{place.address.street + " " + place.address.zipCode + ", " + place.address.city}</Link>
                                 </div>
                             </div>
                             <div className="share_save">
@@ -57,18 +58,16 @@ const Index = () => {
                             </div>
                         </div>
                         <div className="container_img">
-                            
-                            
-                                <GaleryImage images={place.image} />
-                                {/* {place.image.map((img, index) => {
-                                    if (index !== 0) {
-                                        return (
-                                            <div className="thumbnail">
-                                                <img src={img} alt="Netflix" />
-                                            </div>
-                                        );
-                                    }
-                                })} */}
+                            <GaleryImage images={place.image} />
+                            {/* {place.image.map((img, index) => {
+                                if (index !== 0) {
+                                    return (
+                                        <div className="thumbnail">
+                                            <img src={img} alt="Netflix" />
+                                        </div>
+                                    );
+                                }
+                            })} */}
                         </div>
 
                         <div className="section_detail">

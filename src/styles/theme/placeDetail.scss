@@ -101,6 +101,9 @@
                     font-weight: bold;
                     font-size: 1.3rem;
                 }
+                & > p {
+                    text-align: justify;
+                }
             }
         }
         .container_booking_card{

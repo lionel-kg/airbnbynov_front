@@ -1,6 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { userContext } from '../../../context/UserContext';
 import userService from '../../../service/user.service';
+import ProfilNavigator from "../../../component/ProfilNavigator/index"
+import WithAuth from '../../../HOC/withAuth';
+import WithAdminAuth from '../../../HOC/withAdminAuth';
+
 
 const Index = () => {
     const {state: globalState} = useContext(userContext);
@@ -18,6 +22,7 @@ const Index = () => {
   
     return (
       <div className="panelAdmin">
+        <ProfilNavigator />
         <h1>Liste des utilisateurs</h1>
         <table className="usersTable">
           <thead>
@@ -27,7 +32,6 @@ const Index = () => {
               <th>Prenom</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -46,4 +50,4 @@ const Index = () => {
     );
   };
 
-export default Index;
+export default WithAuth(WithAdminAuth(Index));

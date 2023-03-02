@@ -51,7 +51,7 @@ const Index = (props) => {
     return ( 
         <div className={styles.card_container}>
             <div className={styles.container_img_place} >
-                {router.pathname.includes("profil") ? <div onClick={()=> setOpenDeleteModal(true)}> <Delete className={styles.favorite+" "+styles.delete} /></div> : <div onClick={()=>{isFavorite === false ? addPlaceFromWishList(place) : removePlaceFromWishList(place._id)}}>{isFavorite === false ? <FavoriteBorder className={styles.favorite} />: <Favorite className={styles.favorite}/>}</div>}
+                {router.pathname.includes("/profil/place") ? <div onClick={()=> setOpenDeleteModal(true)}> <Delete className={styles.favorite+" "+styles.delete} /></div> : <div onClick={()=>{isFavorite === false ? addPlaceFromWishList(place) : removePlaceFromWishList(place._id)}}>{isFavorite === false ? <FavoriteBorder className={styles.favorite} />: <Favorite className={styles.favorite}/>}</div>}
                 <Carrousel imgs={place.image}/>
             </div>
             <div className={styles.places_content}>

@@ -54,7 +54,7 @@ const Index = (props) => {
             </div>
             <Input name="email" classes="form_input" type="text" placeHolder="john.doe@test.com" label="email" value={value.email} handleChange={(e) => handleChangeInput(e)}/>
             <Input name="password" classes="form_input" type="password" placeHolder="******" label="password" value={value.password} handleChange={(e) => handleChangeInput(e)}/>
-            <CustomButton type="submit" classes="btn btn_color-black" text="Login" />
+            <CustomButton type="submit" classes="btn btn_color_customRed" text="Login" />
             {type != null? <Notification type={type} message={message}/>:null}
         </form>
     );

@@ -14,12 +14,7 @@ export const WishlistContextProvider = ({children}) => {
         }
     }, []);
     const [wishList, setWishList] = useState([]);
-    // const [isFavorite, setIsFavorite] = useState(false);
     
-    
-        // useEffect(() => {
-        //     console.log(wishList);
-        // }, [wishList]);
     const removePlaceFromWishList = (id) => {
         const newList = wishList.filter((item) => item._id !== id);
         localStorage.setItem("wishList", JSON.stringify(newList));

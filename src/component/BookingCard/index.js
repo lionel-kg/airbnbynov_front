@@ -6,9 +6,11 @@ import CustomSelect from "../CustomSelect/index";
 import CustomButton from "../CustomButton/index";
 import bookingService from '../../service/booking.service';
 import {userContext} from "../../context/UserContext";
+import { useRouter } from 'next/router';
 
 const Index = ( props) => {
     const {place} = props;
+    const router = useRouter();
     const { state: globalState } = useContext(userContext);
     const [dateStart, setDateStart] = useState(null);
     const [dateEnd, setDateEnd] = useState(null);
@@ -53,7 +55,11 @@ const Index = ( props) => {
         </>
     }
     const submit = () => {
-        bookingService.createBooking(value,globalState.user.token)
+        if(dateStart !== null && dateEnd !== null && nbNight !== null && nbTraveler !==null && globalState.user.token !== null ){
+            bookingService.createBooking(value,globalState.user.token).then(()=> {
+                router.push("/profil/travel");
+            })
+        }
         console.log(value);
     }
 
@@ -82,7 +88,7 @@ const Index = ( props) => {
                     />
                     <CustomSelect defaultValue={1} name="nbTraveler" options={option} handleChange={(e)=>{handleChangeInput(e)}} classes={styles.select}/>
                 </div>
-                <CustomButton type="submit" classes={styles.btn_booking} text="Reserver" onClick={(e)=>{submit();}}/>
+                <CustomButton type="submit" classes={styles.btn_booking} text="Réserver" onClick={(e)=>{submit();}}/>
                 <div className={styles.text}>Aucun montant ne vous sera débité pour le moment</div>
                 <div className={styles.price}>
                     <div className={styles.calc}>

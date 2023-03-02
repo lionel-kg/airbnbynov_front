@@ -121,7 +121,7 @@ const index = () => {
                     <div>
                         <CustomSelect defaultValue={router.query.type} name="type" options={typePlaces} handleChange={(e)=>{handleChangeInput(e)}} classes={styles.select}/>
                     </div>
-                    <CustomButton type="submit" classes="btn btn_color-black btn_full" text="Afficher" onClick={(e)=>{applyFilter();}}/>
+                    <CustomButton type="submit" classes="btn btn_color_customRed btn_full" text="Afficher" onClick={(e)=>{applyFilter();}}/>
                 </form>
             </Modal> : null
         }

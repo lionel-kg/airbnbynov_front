@@ -173,7 +173,7 @@ const edit = (props) => {
                     <CustomSelect name="type" options={typePlaces} handleChange={(e)=>{handleChangeInput(e)}} classes={styles.select} defaultValue={place.type}/>
                 </div>
             </div>
-            <CustomButton type="submit" classes="btn btn_color-black btn_full" text="Modifier" onClick={(e)=>{submit();}}/>
+            <CustomButton type="submit" classes="btn btn_color_customRed btn_full" text="Modifier" onClick={(e)=>{submit();}}/>
         </> : "loading"
         
         }

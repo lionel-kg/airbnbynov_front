@@ -12,6 +12,8 @@ const StateProvider = ({ children }) => {
                     email: email,
                     firstName: firstName,
                     lastName: lastName,
+                    isAdmin: isAdmin,
+                    UserType: userType
                 } = action.payload;
                 if (firstName === null) {
                     firstName = "Prénom";
@@ -24,7 +26,9 @@ const StateProvider = ({ children }) => {
                     email: email,
                     firstname: firstName,
                     lastname: lastName,
-                    token: token
+                    token: token,
+                    isAdmin: isAdmin,
+                    userType: userType
                 };
                 return newStateLogin;
             case "updateUser":
@@ -33,6 +37,8 @@ const StateProvider = ({ children }) => {
                     email: action.payload.email,
                     firstname: action.payload.firstName,
                     lastname: action.payload.lastName,
+                    isAdmin: action.payload.isAdmin,
+                    userType: action.payload.UserType
                 };
                 return newUserUpdate;
             case "logout":

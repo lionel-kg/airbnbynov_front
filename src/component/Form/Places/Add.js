@@ -117,8 +117,10 @@ const add = () => {
             }
             newValue.image = url;
             //checkFormField(formField,newValue);
-            placeService.createPlace(newValue,globalState.user.token);
             setTrySend(false);
+            placeService.createPlace(newValue,globalState.user.token).then(()=> {
+                router.push("/profil");
+            });
         }
     }, [progress, trySend, value, url, selectedImages]);
   
@@ -150,7 +152,7 @@ const add = () => {
                         <CustomSelect name="type" options={typePlaces} handleChange={(e)=>{handleChangeInput(e)}} classes={styles.select}/>
                 </div>
             </div>
-            <CustomButton type="submit" classes="btn btn_color-black btn_full" text="Ajouter" onClick={(e)=>{submit();}}/>
+            <CustomButton type="submit" classes="btn btn_color_customRed btn_full" text="Ajouter" onClick={(e)=>{submit();}}/>
         </> : "loading"
         
         }

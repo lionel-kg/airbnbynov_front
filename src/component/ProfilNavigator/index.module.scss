@@ -3,8 +3,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-inline: 20%;
-    margin-bottom: 16px;
+    padding-inline: 30%;
+    margin: 16px 0;
+
     &_item {
       padding: 20px;     
       border-radius: 40px;
