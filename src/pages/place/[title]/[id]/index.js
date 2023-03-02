@@ -73,7 +73,7 @@ const Index = () => {
 
                         <div className="section_detail">
                             <div className="section_one">
-                                <h1>description</h1>
+                                <h1>Description :</h1>
                                 <p>
                                     {place.description}
                                 </p>

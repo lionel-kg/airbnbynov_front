@@ -94,6 +94,13 @@
             }
             .section_one{
                 overflow-wrap: break-word;
+                text-align: justify;
+
+                & > h1 {
+                    margin-bottom: 8px;
+                    font-weight: bold;
+                    font-size: 1.3rem;
+                }
             }
         }
         .container_booking_card{

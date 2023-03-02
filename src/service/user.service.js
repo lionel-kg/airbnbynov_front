@@ -18,5 +18,14 @@ export default {
             }
         };
         return axios.put(process.env.NEXT_PUBLIC_API_BASE_URL+"/api/v1/user/",body,customConfig);
+    },
+    getUsers(token) {
+        const customConfig = {
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+            }
+        };
+        return axios.get(process.env.NEXT_PUBLIC_API_BASE_URL+"/api/v1/user/all",customConfig);
     }
 }
