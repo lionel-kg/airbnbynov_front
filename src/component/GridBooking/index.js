@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, {useContext, useEffect} from 'react'
+import React, {useContext} from 'react'
 import { displayDate } from '../../tools/Date';
 import styles from "./index.module.scss";
 import CustomButton from '../CustomButton/Index'

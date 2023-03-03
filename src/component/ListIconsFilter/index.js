@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from "./index.module.scss"
-
 import PoolIcon from '@mui/icons-material/Pool';
 import { Agriculture, Apartment, ArrowBackRounded, ArrowForwardRounded, Castle, DownhillSkiing, Houseboat, HouseSiding, LocalFireDepartment, TuneSharp } from '@mui/icons-material';
 import CustomButton from "../CustomButton/index"

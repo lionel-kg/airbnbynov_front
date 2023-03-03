@@ -3,7 +3,6 @@ import CustomButton from "../../CustomButton/index";
 import TitlePage from "../../TitlePage/index";
 import Input from "../../Input/index";
 import authService from '../../../service/auth.service';
-import styles from "./index.module.scss";
 import { useRouter } from 'next/router';
 import Notification from "../../../component/Notification/Notification";
 import {userContext} from "../../../context/UserContext";

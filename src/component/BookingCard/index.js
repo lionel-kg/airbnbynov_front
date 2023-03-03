@@ -60,7 +60,6 @@ const Index = ( props) => {
                 router.push("/profil/travel");
             })
         }
-        console.log(value);
     }
 
     return (
