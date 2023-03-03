@@ -16,7 +16,9 @@ const Index = () => {
             placeService.getPlace(router.query.id).then((res) => {
                 setPlace(res.data);
                 setLoading(false);
-            });
+            }).catch((err)=>{
+                console.log(err);
+              });
         }
     }, [router.isReady]);
 
@@ -61,10 +63,11 @@ const Index = () => {
                             <GaleryImage images={place.image} />
                             {/* {place.image.map((img, index) => {
                                 if (index !== 0) {
-                                    return (
+                                    return (<>
+                                        { index < 4 ?
                                         <div className="thumbnail">
                                             <img src={img} alt="Netflix" />
-                                        </div>
+                                        </div> : null}</>
                                     );
                                 }
                             })} */}

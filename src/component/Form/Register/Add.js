@@ -50,7 +50,7 @@ const Register = (props) => {
     return (
         <form className='form_group' method='POST' onSubmit={(e) => submitRegister(e)}>
             <div className='center'>
-                <TitlePage title="Register"/>
+                <TitlePage title="S'inscrire"/>
             </div>
             <div className={styles.selectRole}>
                 <h1 onClick={()=>{setwithRoleOwner(false)}} className={withRoleOwner === false ? styles.selected : null}>Voyageur</h1>
@@ -60,7 +60,7 @@ const Register = (props) => {
             <Input name="lastName" classes="form_input" type="text" placeHolder="johns" label="lastname" value={value.lastName} handleChange={(e) => handleChangeInput(e)}/>
             <Input name="email" classes="form_input" type="text" placeHolder="john.doe@test.com" label="email" value={value.email} handleChange={(e) => handleChangeInput(e)}/>
             <Input name="password" classes="form_input" type="password" placeHolder="******" label="password" value={value.password} handleChange={(e) => handleChangeInput(e)}/>
-            <CustomButton type="submit" classes="btn btn_color_customRed" text="Register" />
+            <CustomButton type="submit" classes="btn btn_color_customRed" text="S'inscrire" />
         </form>
     );
 }

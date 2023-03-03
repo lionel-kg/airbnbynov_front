@@ -21,6 +21,8 @@ const Index = () => {
           console.log(res.data);
           setBookings(res.data);
           setLoading(false)
+        }).catch((err)=>{
+          console.log(err);
         });
       }
     }, [globalState]);

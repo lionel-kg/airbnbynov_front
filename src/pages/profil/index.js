@@ -35,8 +35,8 @@ const Index = () => {
             setShow(false);
         })
         .catch((err)=>{
-            console.log(err)
-        })
+            console.log(err);
+        });
     }
 
     const openModal = () => {

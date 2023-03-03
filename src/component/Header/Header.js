@@ -63,7 +63,9 @@ const Header = () => {
       typePlaceService.getTypePlaces()
       .then((res)=>{
         setTypePlaces(res.data);
-      })
+      }).catch((err)=>{
+        console.log(err);
+      });
     }
   }, [globalState]);
 

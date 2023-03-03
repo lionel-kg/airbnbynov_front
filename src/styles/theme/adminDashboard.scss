@@ -9,22 +9,26 @@
     }
   
     .usersTable {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 24px;
-  
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 24px;
+        //table-layout: fixed;
+        height: 100%;
       th,
       td {
-        padding: 12px;
-        margin: auto;
+        padding: 20px;
+        text-align: center;
+        vertical-align: middle;
+        img{
+            max-width: 270px;
+        }
       }
   
       th {
         font-weight: 600;
       }
       tr{
-        display: flex;
-        flex-direction: row;
+        vertical-align: middle;
         border-bottom: 1px solid #e6e6e6;
      }
   

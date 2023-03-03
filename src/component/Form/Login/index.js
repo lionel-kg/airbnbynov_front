@@ -33,7 +33,9 @@ const Index = (props) => {
           dispatch({ type: "login", payload: res.data.user });
           setType("success");
           setMessage("login validé");
-          setOpenLoginModal(false);
+          if(setOpenLoginModal !== undefined && setOpenLoginModal !== null) {
+            setOpenLoginModal(false);
+          }
           setTimeout(()=>{
             router.push("/profil")
           },3000)
@@ -50,11 +52,11 @@ const Index = (props) => {
     return (
         <form className='form_group' method='POST' onSubmit={(e) => submitLogin(e)}>
             <div className='center'>
-                <TitlePage title="Login"/>
+                <TitlePage title="Se connecter"/>
             </div>
             <Input name="email" classes="form_input" type="text" placeHolder="john.doe@test.com" label="email" value={value.email} handleChange={(e) => handleChangeInput(e)}/>
             <Input name="password" classes="form_input" type="password" placeHolder="******" label="password" value={value.password} handleChange={(e) => handleChangeInput(e)}/>
-            <CustomButton type="submit" classes="btn btn_color_customRed" text="Login" />
+            <CustomButton type="submit" classes="btn btn_color_customRed" text="Se connecter" />
             {type != null? <Notification type={type} message={message}/>:null}
         </form>
     );

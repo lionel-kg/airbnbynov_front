@@ -65,7 +65,9 @@ const add = () => {
       .then((res)=>{
         setTypePlaces(res.data);
         setLoading(false)
-      })
+      }).catch((err)=>{
+        console.log(err);
+      });
     }, []);
 
 

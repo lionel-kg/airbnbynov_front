@@ -16,6 +16,8 @@ const Index = () => {
         userService.getUsers(globalState.user.token)
         .then((res) => {
             setUsers(res.data);
+        }).catch((err)=>{
+          console.log(err);
         });
       }
     }, [globalState]);

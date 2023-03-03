@@ -16,7 +16,9 @@ const Index = () => {
             bookingService.getMyTravel(globalState.user.token).then((res)=> {
                 setTravels(res.data);
                 setLoading(false);
-            })
+            }).catch((err)=>{
+                console.log(err);
+              });
         }
     },[globalState])
 

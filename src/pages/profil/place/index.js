@@ -21,7 +21,9 @@ const Index = () => {
                 setIsDelete(false);
                 setIsUpdate(false);
                 setLoading(false);
-            })
+            }).catch((err)=>{
+                console.log(err);
+              });
         }
     },[globalState,isDelete,isUpdate])
 

@@ -15,14 +15,18 @@ const Index = () => {
         placeService.getPlaces().then((res) => {
             setPlaces(res.data);
             setLoading(false);
-        })
+        }).catch((err)=>{
+            console.log(err);
+          })
     }, []);
 
     useEffect(()=>{
         if(loading === false) {
             placeService.searchPlace(search).then((res)=>{
                 setPlaces(res.data);
-            })
+            }).catch((err)=>{
+                console.log(err);
+              })
         } 
     },[search])
 
@@ -35,7 +39,9 @@ const Index = () => {
                 })
                 placeService.filterPlaces(params).then((res)=>{
                     setPlaces(res.data);
-                })
+                }).catch((err)=>{
+                    console.log(err)
+                  })
             }
         
     },[router.query])

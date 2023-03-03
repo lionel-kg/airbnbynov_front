@@ -9,64 +9,80 @@ import bookingService from '../../service/booking.service';
 const index = (props) => {
     const {bookings,setIsUpdate,loading} = props;
     const router = useRouter();
-    const { state: globalState,dispatch } = useContext(userContext);
+    const { state: globalState } = useContext(userContext);
 
     const updateBooking = (id,status) => 
     {
         bookingService.updateBooking(id,status,globalState.user.token)
         .then(() => {
           setIsUpdate(true)
-        })
+        }).catch((err)=>{
+          console.log(err);
+        });
        
     }
 
-    useEffect(() => {
-      console.log(loading)
-    }, [globalState])
+    // useEffect(() => {
+    //   console.log(bookings);
+    //   console.log(Object.keys(bookings).length);
+    //   console.log(loading)
+    // }, [])
     
   return (
-    <>
-         { loading !== true  ? bookings.map((booking) => {
-            return (
-              <div key={booking._id} className={styles.booking_grid}>
-                <img className={styles.booking_image} src={booking.place.image[0]} />
-                <div className={styles.booking_users_info}>
-                    <p>Voyageur: <span>{booking.customer.firstName+" "+booking.customer.lastName }</span></p>
-                    <p>Propriétaire: <span>{booking.owner.firstName+" "+booking.owner.lastName }</span></p>
-                </div>
-                <div className={styles.booking_container_info}>
-                  <div>
-                    <h1 className={styles.title}>{booking.place.title}</h1>
-                    <p>Depart: <span>{displayDate(booking.dateStart) }</span></p>
-                    <p>Fin: <span>{displayDate(booking.dateEnd) }</span></p>
-                    <p>Faite le: <span>{displayDate(booking.createdAt) }</span></p>
-                  </div> 
-                </div> 
-                <div className={styles.booking_price}>
-                    <h1>{booking.price} €</h1>
-                </div>
-                <div className={styles.booking_status}>
-                    <h1>{booking.status}</h1>
-                </div>
-                <div className={styles.booking_action}>
-                  { booking.status === "WAITING" && router.pathname.includes("booking") && globalState.user?.email === booking.owner.email  ?
-                    <>
-                      <CustomButton classes={styles.btn+" "+styles.accept_btn} text={"Accepter"} onClick={()=>{
-                        updateBooking(booking._id,"VALIDATE"); setIsUpdate(false);
-                      }}/>
-                      <CustomButton classes={styles.btn+" "+styles.reject_btn} text={"Refuser"} onClick={()=>{
-                        updateBooking(booking._id,"DECLINE"); setIsUpdate(false);
-                      }}/>
-                    </> : null
-                  }
-                    
-                </div>
-              </div>
-              )
-            })
-            : "loading"}
+      <div className={styles.panelAdmin}>
+        <h1>Liste des réservations</h1>
+        <table className={styles.usersTable}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Image</th>
+              <th>Nom</th>
+              <th>Prix</th>
+              <th>Dates</th>
+              <th>Statut</th>
+              <th>Information utilisateurs</th>
+              { router.pathname.includes("/profil/booking") ? 
+                <th>Action</th> : <></>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            { loading !== true ?
+                bookings.map((booking) => (
+                  <tr key={booking._id}>
+                    <td>{booking._id}</td>
+                    <td><img  src={booking.place.image[0]} /></td>
+                    <td>{booking.place.title}</td>
+                    <td>{booking.price} €</td>
+                    <td>
+                      <div>Depart: {displayDate(booking.dateStart) }</div>
+                      <div>Fin: {displayDate(booking.dateEnd)}</div>
+                      <div>faite le : {displayDate(booking.createdAt)}</div>
+                    </td>
+                    <td>{booking.status}</td>
+                    <td>
+                      <div>Propriétaire: {booking.owner?.firstName+" "+booking.owner?.lastName}</div>
+                      <div>Voyageur: {booking.customer?.firstName+" "+booking.customer?.lastName}</div>
+                    </td>
+                    <td>
+                      { booking.status === "WAITING" && router.pathname.includes("/profil/booking") && globalState.user?.email === booking.owner.email  ?
+                        <>
+                          <CustomButton classes={styles.btn+" "+styles.accept_btn} text={"Accepter"} onClick={()=>{
+                            updateBooking(booking._id,"VALIDATE"); setIsUpdate(false);
+                          }}/>
+                          <CustomButton classes={styles.btn+" "+styles.reject_btn} text={"Refuser"} onClick={()=>{
+                            updateBooking(booking._id,"DECLINE"); setIsUpdate(false);
+                          }}/>
+                        </> : null
+                      }
+                    </td>
+                  </tr>
+                )) : null
+            }
             
-    </>
+          </tbody>
+        </table>
+      </div>
   )
 }
 

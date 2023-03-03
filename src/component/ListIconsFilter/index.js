@@ -47,7 +47,9 @@ const index = () => {
         typePlaceService.getTypePlaces()
         .then((res)=>{
           setTypePlaces(res.data);
-        })
+        }).catch((err)=>{
+            console.log(err);
+          });
       }, []);
     
       const applyFilter = () => {
