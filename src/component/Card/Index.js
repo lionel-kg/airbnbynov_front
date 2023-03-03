@@ -27,7 +27,7 @@ const Index = (props) => {
     }, [wishList]);
 
     const actionOverlay = () => {
-        if(router.pathname.includes("profil")) {
+        if(router.pathname.includes("/profil/place")) {
             setOpenEditModal(true);
         } else {
             window.open("/place/"+place.title+"/"+place._id);
