@@ -17,8 +17,8 @@ const index = (props) => {
         .then(() => {
           setIsUpdate(true)
         }).catch((err)=>{
-          console.log(err);
-        });
+          console.log(err)
+        })
        
     }
 
@@ -29,9 +29,9 @@ const index = (props) => {
     // }, [])
     
   return (
-      <div className={styles.panelAdmin}>
+      <div className="panelAdmin">
         <h1>Liste des réservations</h1>
-        <table className={styles.usersTable}>
+        <table className="usersTable">
           <thead>
             <tr>
               <th>ID</th>
