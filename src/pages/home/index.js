@@ -64,7 +64,7 @@ const Index = () => {
                 <GridCard places={places} loading={loading}/>
             }
 
-            <CustomButton classes="btn_show_map" text={showMap ? <><span>Afficher la listes</span><List/> </> :<><span>Afficher la carte </span><Map/></>} onClick={()=>{setShowMap(!showMap)}} />
+            <CustomButton classes="btn_show_map" text={showMap ? <><span>Afficher la liste</span><List/> </> :<><span>Afficher la carte </span><Map/></>} onClick={()=>{setShowMap(!showMap)}} />
            </div>
         </div>
     );
