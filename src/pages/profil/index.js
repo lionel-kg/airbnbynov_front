@@ -1,8 +1,6 @@
 import React, { useEffect,useState, useContext } from 'react';
 import userService from '../../service/user.service';
-import profilPicture from "../../../public/person.png";
 import profilWaf from "../../../public/waf.png";
-import TitlePage from "../../component/TitlePage/index";
 import ProfilNavigator from "../../component/ProfilNavigator/index"
 import CustomButton from "../../component/CustomButton/index";
 import Modal from '../../component/Modal/Modal';

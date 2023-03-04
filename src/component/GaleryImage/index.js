@@ -1,5 +1,5 @@
-import { Close, CloseFullscreen } from "@mui/icons-material";
-import React, { useState, useEffect } from "react";
+import { Close } from "@mui/icons-material";
+import React, { useState } from "react";
 import styles from "./index.module.scss";
 
 const Index = (props) => {

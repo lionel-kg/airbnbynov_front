@@ -1,4 +1,4 @@
-import {createContext, React, useState, useEffect} from 'react';
+import {createContext, React, useState} from 'react';
 
 const SearchContext = createContext({
     search: "",

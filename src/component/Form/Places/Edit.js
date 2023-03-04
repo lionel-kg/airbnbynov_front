@@ -7,14 +7,13 @@ import CustomButton from "../../CustomButton/index";
 import { useRouter } from 'next/router';
 import typePlaceService from '../../../service/typePlace.service';
 import UploadField from "../../Upload/index"
-import { getDownloadURL, uploadBytes,uploadBytesResumable, getStorage, ref } from "firebase/storage";
+import { getDownloadURL,uploadBytesResumable} from "firebase/storage";
 import {fireStorage} from "../../../FireBase/initFirebase";
 import {userContext} from '../../../context/UserContext';
 import AutoComplete from '../../AutoComplete';
 import addressTool from '../../../tools/address';
 import placeService from '../../../service/place.service';
-import { resolve } from 'styled-jsx/css';
-import { checkFormField } from '../../../tools/formField';
+
 
 
 

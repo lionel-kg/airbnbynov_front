@@ -1,5 +1,4 @@
 import { useRef, useEffect } from "react";
-import Input from "../Input";
 import styles from "./index.module.scss"
 
 const AutoComplete = (props) => {

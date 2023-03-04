@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from "react";
-const { REACT_APP_LOCALSTORAGE_ROLE_KEY, REACT_APP_LOCALSTORAGE_TOKEN_KEY } = process.env;
 const initialValue = { user: null };
 const userContext = createContext(initialValue);
 const { Provider } = userContext;
