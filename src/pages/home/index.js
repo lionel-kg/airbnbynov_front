@@ -6,6 +6,7 @@ import SearchContext from '../../context/SearchContext';
 import ListIconsFilter from "../../component/ListIconsFilter/index"
 import dynamic from 'next/dynamic';
 import CustomButton from "../../component/CustomButton/index";
+import { List, Map } from '@mui/icons-material';
 
 const MapComponent = dynamic(() => import('../../component/Map/index'), { ssr: false });
 
@@ -63,7 +64,7 @@ const Index = () => {
                 <GridCard places={places} loading={loading}/>
             }
 
-            <CustomButton classes="btn_show_map" text="Afficher la carte" onClick={()=>{setShowMap(!showMap)}} />
+            <CustomButton classes="btn_show_map" text={showMap ? <><span>Afficher la listes</span><List/> </> :<><span>Afficher la carte </span><Map/></>} onClick={()=>{setShowMap(!showMap)}} />
            </div>
         </div>
     );
